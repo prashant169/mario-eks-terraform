@@ -76,5 +76,6 @@ Helps maintain consistency across environments and saves hours of setup time.
 
 ✅ Just clone → update variables → terraform apply
 
+<img width="1918" height="1018" alt="image" src="https://github.com/user-attachments/assets/a29ff128-4477-4677-9ade-9b0a30727590" />
 
 
