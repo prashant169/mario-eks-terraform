@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mario-deployment
+  namespace: test
+spec:
+  replicas: 3
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: my-app-lb
+  template:
+    metadata:
+      labels:
+        app: my-app-lb
+    spec:
+      containers:
+      - name: mario
+        image: fardeenattar/mario-image:20250708123840
+        ports:
+        - containerPort: 80  # The container listens on port 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mario-svc
+  namespace: test
+  labels:
+    app: my-app-lb
+spec:
+  type: ClusterIP
+  ports:
+  - port: 90   # Exposed service port
+    targetPort: 80  # Routes traffic to container's port 80
+    protocol: TCP
+  selector:
+    app: my-app-lb
